@@ -41,20 +41,31 @@
     nav a:hover { color: #00c2ff; }
 
     .lang-toggle {
-      position: absolute;
-      right: 30px;
-      top: 15px;
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       font-weight: 600;
       color: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      z-index: 1001;
     }
 
     .lang-toggle span {
-      margin: 0 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
       cursor: pointer;
       transition: 0.3s;
+      background: rgba(255, 255, 255, 0.08);
     }
 
-    .lang-toggle span:hover { color: #00c2ff; }
+    .lang-toggle span:hover { color: #00c2ff; background: rgba(255, 255, 255, 0.14); }
 
     section {
       padding: 100px 20px;
@@ -102,6 +113,30 @@
       box-shadow: 0 0 20px rgba(0, 194, 255, 0.3);
     }
 
+    .nav-current {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .nav-toggle {
+      appearance: none;
+      border: none;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.4rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .nav-toggle:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
     .skills, .interests, .hobbies {
       display: flex;
       flex-wrap: wrap;
@@ -133,6 +168,80 @@
     }
 
     @media(max-width: 800px) {
+      header {
+        display: block;
+        padding: 10px 0 20px;
+      }
+
+      #navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 0 20px;
+      }
+
+      .nav-current {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 320px;
+        padding: 8px 14px;
+        margin-left: 0;
+        align-self: flex-start;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 999px;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: 320px;
+        margin: 0;
+        padding: 14px 12px;
+        background: rgba(0, 0, 0, 0.86);
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-menu a {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .nav-current a {
+        color: #fff;
+        font-weight: 600;
+      }
+
+      .lang-toggle {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        margin: 0;
+        padding: 14px 16px;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(0, 0, 0, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 28px;
+        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        z-index: 1001;
+      }
+
       .home { flex-direction: column; text-align: center; }
       .home img { width: 200px; height: 200px; }
     }
@@ -140,11 +249,33 @@
 </head>
 <body>
 
+  <header>
+    <nav id="navbar">
+      <div class="nav-current">
+        <a href="#home" data-id="home">Beranda</a>
+        <button type="button" class="nav-toggle" aria-expanded="false" aria-label="Buka menu">⋮</button>
+      </div>
+      <div class="nav-menu">
+        <a href="#home" data-id="home">Beranda</a>
+        <a href="#about" data-id="about">Tentang</a>
+        <a href="#experience" data-id="experience">Pengalaman</a>
+        <a href="#skills" data-id="skills">Skill</a>
+        <a href="#interests" data-id="interests">Minat</a>
+        <a href="#hobbies" data-id="hobbies">Hobi</a>
+        <a href="#portfolio" data-id="portfolio">Karya</a>
+        <a href="#contact" data-id="contact">Kontak</a>
+      </div>
+    </nav>
+    <div class="lang-toggle">
+      <span id="ind">IND</span> | <span id="eng">ENG</span>
+    </div>
+  </header>
+
   <section id="home" class="home" data-aos="fade-up">
     <img src="foto/WhatsApp Image 2025-10-18 at 10.23.45_bf92dc76.jpg" alt="Foto Dzaky" />
     <div class="home-text">
-      <h1>Hi, i'm  Dzaky</h1>
-      <p>Developer • Explorer • Hiker</p>
+      <h1>Hai, Aku Dzaky</h1>
+      <p>Developer • Leader • Hiker</p>
       <br>
     </div>
   </section>
@@ -153,6 +284,15 @@
     <h2>Tentang Saya</h2>
     <p>Saya adalah seseorang yang punya minat besar di dunia <b>Kepimpinan, Bisnis, dan Teknologi</b>. 
     Saya suka bikin karya visual yang bisa ngasih pesan kuat, dan juga suka belajar hal baru, terutama yang berhubungan sama kreativitas dan coding.</p>
+  </section>
+
+  <section id="experience" data-aos="fade-up">
+    <h2>Pengalaman</h2>
+    <div class="skills">
+      <div class="card">🧑‍💼 Ketua OSIS SMP</div>
+      <div class="card">🎤 Ketua Panitia Sekolah</div>
+      <div class="card">🤝 Koordinator Tim Kreatif</div>
+    </div>
   </section>
 
   <section id="skills" data-aos="fade-up">
@@ -188,10 +328,10 @@
 
   <section id="portfolio" data-aos="fade-up">
     <h2>Karya</h2>
-    <p style="text-align:center;">Beberapa karya saya (Website dan Artifical Intelegence)</p>
+    <p style="text-align:center;">Beberapa karya saya (Website dan Artificial Intelligence)</p>
     <p style="text-align:center; margin-top:20px;">
-        <a href="https://osissmpitrj21.vercel.app" target="_blank" class="button">Lihat Website</a>
-      <a href="https://alpha-ai-delta.vercel.app" target="_blank" class="button">Lihat AI</a>
+        <a href="https://osissmpitrj21.vercel.app" target="_blank" class="button" data-id="websiteButton">Lihat Website</a>
+      <a href="https://alpha-ai-delta.vercel.app" target="_blank" class="button" data-id="aiButton">Lihat AI</a>
         
     </p>
   </section>
@@ -214,6 +354,7 @@
       eng: {
         home: "Home",
         about: "About",
+        experience: "Experience",
         skills: "Skills",
         interests: "Interests",
         hobbies: "Hobbies",
@@ -223,15 +364,47 @@
         homeDesc: "Developer • Explorer • Hiker",
         aboutTitle: "About Me",
         aboutText: "I'm someone passionate about Leadership, Business, and Technology. I love creating visual works that tell stories and learning new things related to creativity and coding.",
+        experienceTitle: "Experience",
         skillsTitle: "Skills & Abilities",
         interestsTitle: "Interests & Talents",
         hobbiesTitle: "Hobbies",
         portfolioTitle: "Portfolio",
+        portfolioDesc: "Some of my works (Website and Artificial Intelligence)",
+        experienceCards: [
+          "🧑‍💼 Student Council President 2025/2026",
+          "🎤 Leader of the 21st batch committee",
+          "🤝 Creative Team Coordinator",
+        ],
+        skillsCards: [
+          "🎥 Videography",
+          "🖥️ Video Editing",
+          "📸 Photography",
+          "💻 Coding (HTML, CSS, JS, Python)",
+          "🏸 Badminton Player",
+        ],
+        interestsCards: [
+          "💼 Leadership",
+          "☕ Building Creative Brands & Businesses",
+          "🎧 Listening to Music & Podcasts",
+        ],
+        hobbiesCards: [
+          "🏸 Playing Badminton",
+          "💻 Coding",
+          "📷 Photo Hunting",
+          "✈️ Traveling",
+          "⛰️ Hiking",
+        ],
+        websiteButton: "View Website",
+        aiButton: "View AI",
         contactTitle: "Contact",
+        pageTitle: "Portfolio | Dzaky Alfaruq",
+        footerText: "© 2025 Dzaky Portfolio | Developer, Explorer, Hiker",
+        menuToggleLabel: "Open menu",
       },
       ind: {
         home: "Beranda",
         about: "Tentang",
+        experience: "Pengalaman",
         skills: "Skill",
         interests: "Minat",
         hobbies: "Hobi",
@@ -241,29 +414,129 @@
         homeDesc: "Developer • Explorer • Hiker",
         aboutTitle: "Tentang Saya",
         aboutText: "Saya adalah seseorang yang punya minat besar di dunia Kepimpinan, Bisnis dan Teknologi. Saya suka bikin karya visual yang bisa ngasih pesan kuat, dan juga suka belajar hal baru, terutama yang berhubungan sama kreativitas dan coding.",
+        experienceTitle: "Pengalaman",
         skillsTitle: "Kemampuan & Skill",
         interestsTitle: "Minat & Bakat",
         hobbiesTitle: "Hobi",
         portfolioTitle: "Karya",
+        portfolioDesc: "Beberapa karya saya (Website dan Artificial Intelligence)",
+        experienceCards: [
+          "🧑‍💼 Ketua OSIS 2025/2026",
+          "🎤 Ketua Panitia Angkatan 21",
+          "🤝 Koordinator Tim Kreatif",
+        ],
+        skillsCards: [
+          "🎥 Videografi",
+          "🖥️ Editing Video",
+          "📸 Fotografi",
+          "💻 Coding (HTML, CSS, JS, Python)",
+          "🏸 Pemain Badminton",
+        ],
+        interestsCards: [
+          "💼 Kepemimpinan",
+          "☕ Bikin Brand & Bisnis Kreatif",
+          "🎧 Dengerin Musik & Podcast",
+        ],
+        hobbiesCards: [
+          "🏸 Main Badminton",
+          "💻 Coding",
+          "📷 Hunting Foto",
+          "✈️ Traveling",
+          "⛰️ Hiking",
+        ],
+        websiteButton: "Lihat Website",
+        aiButton: "Lihat AI",
         contactTitle: "Kontak",
+        pageTitle: "Portfolio | Dzaky Alfaruq",
+        footerText: "© 2025 Dzaky Portfolio | Developer, Leader, Hiker",
+        menuToggleLabel: "Buka menu",
       },
     };
 
+    let currentLang = "ind";
+    let currentSection = "home";
+    const menuIds = ["home","about","experience","skills","interests","hobbies","portfolio","contact"];
+    const navMenu = document.querySelector(".nav-menu");
+    const navToggle = document.querySelector(".nav-toggle");
+    const navCurrentLink = document.querySelector(".nav-current a");
+    const navLinks = document.querySelectorAll(".nav-menu a");
+
+    function updateCurrentSection(id) {
+      currentSection = id || "home";
+      const t = translations[currentLang];
+      navCurrentLink.textContent = t[currentSection] || navCurrentLink.textContent;
+      navCurrentLink.href = `#${currentSection}`;
+
+      navLinks.forEach((link) => {
+        link.style.display = link.dataset.id === currentSection ? "none" : "";
+      });
+    }
+
     function switchLang(lang) {
+      currentLang = lang;
       const t = translations[lang];
-      const nav = document.querySelectorAll("#navbar a");
-      const ids = ["home","about","skills","interests","hobbies","portfolio","contact"];
-      nav.forEach((a, i) => a.textContent = t[ids[i]]);
+
+      document.querySelectorAll("#navbar a").forEach((a) => {
+        const id = a.dataset.id;
+        if (id) a.textContent = t[id];
+      });
+
       document.querySelector("#home h1").textContent = t.homeTitle;
       document.querySelector("#home p").textContent = t.homeDesc;
       document.querySelector("#about h2").textContent = t.aboutTitle;
       document.querySelector("#about p").textContent = t.aboutText;
+      document.querySelector("#experience h2").textContent = t.experienceTitle;
+      document.querySelectorAll("#experience .card").forEach((card, index) => {
+        card.textContent = t.experienceCards[index];
+      });
       document.querySelector("#skills h2").textContent = t.skillsTitle;
+      document.querySelectorAll("#skills .card").forEach((card, index) => {
+        card.textContent = t.skillsCards[index];
+      });
       document.querySelector("#interests h2").textContent = t.interestsTitle;
+      document.querySelectorAll("#interests .card").forEach((card, index) => {
+        card.textContent = t.interestsCards[index];
+      });
       document.querySelector("#hobbies h2").textContent = t.hobbiesTitle;
+      document.querySelectorAll("#hobbies .card").forEach((card, index) => {
+        card.textContent = t.hobbiesCards[index];
+      });
       document.querySelector("#portfolio h2").textContent = t.portfolioTitle;
+      document.querySelector("#portfolio p").textContent = t.portfolioDesc;
+      document.querySelectorAll("#portfolio a[data-id]").forEach((button) => {
+        button.textContent = t[button.dataset.id];
+      });
       document.querySelector("#contact h2").textContent = t.contactTitle;
+      document.querySelector("footer p").textContent = t.footerText;
+      document.title = t.pageTitle;
+      navToggle.setAttribute("aria-label", t.menuToggleLabel || "Open menu");
+      updateCurrentSection(currentSection);
     }
+
+    function toggleMenu() {
+      navMenu.classList.toggle("open");
+      const expanded = navMenu.classList.contains("open");
+      navToggle.setAttribute("aria-expanded", expanded);
+    }
+
+    function closeMenu() {
+      navMenu.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+    }
+
+    navToggle.addEventListener("click", toggleMenu);
+    navLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        updateCurrentSection(link.dataset.id);
+        closeMenu();
+      });
+    });
+
+    window.addEventListener("hashchange", () => updateCurrentSection(location.hash.replace("#", "") || "home"));
+    window.addEventListener("load", () => updateCurrentSection(location.hash.replace("#", "") || "home"));
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 800) closeMenu();
+    });
 
     document.getElementById("eng").onclick = () => switchLang("eng");
     document.getElementById("ind").onclick = () => switchLang("ind");
@@ -271,5 +544,3 @@
 
 </body>
 </html>
-
-
